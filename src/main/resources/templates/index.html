@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        table {
+            opacity: 1;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 20px;
+
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align:left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        /* Black table */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111111;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<ul>
+    <li><a><span style="display:inline-block; width: 100px;"href="#IMDB">IMDB</span></a></li>
+    <li><a href="#Movies">Movies</a></li>
+</ul>
+<div class="container">
+    <h1 style="font-family: 'Arial Black'">Movies</h1>
+    <br>
+    <a> <button th:href="@{/create}" th:text="Create" class="nav-link; btn btn-success">Create</button></a>
+    <a> <span> <button th:href="@{/create}" th:text="Search" class="nav-link; btn btn-success">Search</button> </span></a>
+
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Duration</th>
+            <th>Genre</th>
+        </tr>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.title}"/>
+            <td th:text="${movie.year}"/>
+            <td th:text="${movie.duration}"/>
+            <td th:text="${movie.genre}"/>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
