@@ -38,7 +38,7 @@ public class MovieController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute MovieRepository movies, Model model){
+    public String create(@ModelAttribute Movie movies, Model model){
 
         log.info("create post action called...");
 

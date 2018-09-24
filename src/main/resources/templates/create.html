@@ -37,8 +37,7 @@
 <body>
 
 <ul>
-    <li><a href="#IMDB">IMDB</a></li>
-    <li><a href="#Movies">Movies</a></li>
+    <li><a <span style="display:inline-block; width: 100px;" th:href="@{/}" th:text="Movies">Movies</span></a></li>
 </ul>
 <div class="container">
 
@@ -49,7 +48,7 @@
         <p>Title: <br>
             <input type="text" name="Title" size="40"><br></p>
         <br>
-        <p>Year: <br><input type="Integer" name="Year" value="dd/mm/yy" size="40"><br></p>
+        <p>Year: <br><input type="Integer" name="Year" size="40"><br></p>
         <br>
         <p>Duration: <br><input type="text" name="Duration" size="40"><br></p>
         <br>
