@@ -45,5 +45,6 @@ public class MovieController {
         //userService.save(Movie);
         //model.addAttribute("movies", userService.fetchAll());
         return "redirect:/";
+        //hej far
     }
 }
