@@ -13,13 +13,12 @@ import java.util.logging.Logger;
 @Controller
 public class MovieController {
 
+    private final Logger log = Logger.getLogger(MovieController.class.getName());
 
     @Autowired
     private MovieRepository movieRepository;
-    Logger log = Logger.getLogger(MovieController.class.getName());
 
-
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String index(Model model){
         List<Movie> movies = movieRepository.findAll();
 
@@ -38,13 +37,14 @@ public class MovieController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Movie movies, Model model){
+    public String create(@ModelAttribute Movie movie, Model model){
 
-        log.info("create post action called...");
 
-        //userService.save(Movie);
-        //model.addAttribute("movies", userService.fetchAll());
+        movieRepository.addMovie(movie);
+        model.addAttribute("movie", movieRepository.findAll());
+
+
         return "redirect:/";
-        //hej far
+
     }
 }

@@ -26,8 +26,8 @@ public class MovieRepository {
         return movies;
     }
 
-    public void addMovie(){
-
+    public void addMovie(Movie mov){
+        movies.add(mov);
 
     }
 

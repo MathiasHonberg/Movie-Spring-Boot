@@ -37,23 +37,26 @@
 <body>
 
 <ul>
-    <li><a> <span style="display:inline-block; width: 100px;" th:href="@{/}" th:text="Movies">Movies</span></a></li>
+    <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
 </ul>
 <div class="container">
 
     <h1 style="font-family: 'Arial Black'">Create Movie</h1>
     <form method="Post" th:action="@{/create}">
-        <br>
 
-        <p>Title: <br>
-            <input type="text" name="Title" size="40"><br></p>
+        <p>Title: </p><input type="text" size="40" th:field="${movie.title}"/>
         <br>
-        <p>Year: <br><input type="Integer" name="Year" size="40"><br></p>
         <br>
-        <p>Duration: <br><input type="text" name="Duration" size="40"><br></p>
+        <p>Year: </p><input type="number" size="40" th:field="${movie.year}"/>
         <br>
-        <p>Genre: <br><input type="text" name="Genre" size="40"><br></p>
-        <button type="button" class="btn btn-success" >Create</button></p>
+        <br>
+        <p>Duration: </p><input type="text" size="40" th:field="${movie.duration}"/>
+        <br>
+        <br>
+        <p>Genre: </p><input type="text" size="40" th:field="${movie.genre}"/>
+        <br>
+        <br>
+        <input type="submit" class="btn btn-success" value="Create">
 
     </form>
 </div>
