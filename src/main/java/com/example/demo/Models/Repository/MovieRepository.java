@@ -11,7 +11,7 @@ public class MovieRepository {
 
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
-    public MovieRepository(){
+    public MovieRepository() {
 
         movies.add(new Movie("Terminator", 1985, "1:45", "Action"));
         movies.add(new Movie("Terminator 2", 1990, "1:50", "Action"));
@@ -21,19 +21,29 @@ public class MovieRepository {
 
     }
 
-    public List<Movie> findAll(){
+    public List<Movie> findAll() {
 
         return movies;
     }
 
-    public void addMovie(Movie mov){
+    public void addMovie(Movie mov) {
         movies.add(mov);
 
     }
 
-    public void searchMovie(){
+    public Movie searchMovie(String title) {
 
+        for (int i = 0; i < movies.size(); i++) {
+            if (movies.get(i).getTitle().equals(title)) {
 
+                return movies.get(i);
+            } else {
+
+                return null;
+            }
+
+        }
+        return null;
     }
 }
 

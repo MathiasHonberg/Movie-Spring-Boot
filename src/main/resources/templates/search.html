@@ -2,31 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <style>
-        .topnav .search-container {
-            float: right;
-        }
-
-        .topnav input[type=text] {
-            padding: 6px;
-            margin-top: 8px;
-            font-size: 17px;
-            border: none;
-        }
-
-        .topnav .search-container button {
-            float: right;
-            padding: 6px 10px;
-            margin-top: 8px;
-            margin-right: 16px;
-            background: #ddd;
-            font-size: 17px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .topnav .search-container button:hover {
-            background: #ccc;
-        }
         table {
             opacity: 1;
             font-family: arial, sans-serif;
@@ -82,16 +57,7 @@
     <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
 </ul>
 <div class="container">
-    <h1 style="font-family: 'Arial Black'">Movies</h1>
-    <br>
-    <a th:href="@{/create}" th:text="Create" class="nav-link; btn btn-success">Create</a>
-    <br>
-    <br>
-            <form action="@{/search}" th:object="${mov}" method="get">
-                <input id="filter" type="text" placeholder="Search.." name="search">
-                <button type="submit">Search</button>
-            </form>
-    <br>
+    <h1 style="font-family: 'Arial Black'">Movie</h1>
     <br>
     <br>
     <table>
@@ -101,7 +67,7 @@
             <th>Duration</th>
             <th>Genre</th>
         </tr>
-        <tr th:each="movie : ${movies}">
+        <tr th:text="movie : ${movie}">
             <td th:text="${movie.title}"/>
             <td th:text="${movie.year}"/>
             <td th:text="${movie.duration}"/>

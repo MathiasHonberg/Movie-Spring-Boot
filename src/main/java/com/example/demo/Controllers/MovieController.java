@@ -5,6 +5,7 @@ import com.example.demo.Models.Repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,5 +47,14 @@ public class MovieController {
 
         return "redirect:/";
 
+    }
+
+    @GetMapping("/search")
+    public String search(Model model, @ModelAttribute("mov") Movie mov, BindingResult result){
+
+        List<Movie> m = (List<Movie>) this.movieRepository.searchMovie(mov.getTitle());
+        model.addAttribute("movie", m);
+
+        return "search";
     }
 }
