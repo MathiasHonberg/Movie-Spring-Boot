@@ -27,6 +27,7 @@ public class MovieRepository {
     }
 
     public void addMovie(Movie mov) {
+
         movies.add(mov);
 
     }
@@ -37,13 +38,11 @@ public class MovieRepository {
             if (movies.get(i).getTitle().equals(title)) {
 
                 return movies.get(i);
-            } else {
-
-                return null;
             }
 
         }
         return null;
+
     }
 }
 

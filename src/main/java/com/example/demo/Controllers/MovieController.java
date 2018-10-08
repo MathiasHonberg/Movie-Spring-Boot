@@ -52,7 +52,7 @@ public class MovieController {
     @GetMapping("/search")
     public String search(Model model, @ModelAttribute("mov") Movie mov, BindingResult result){
 
-        List<Movie> m = (List<Movie>) this.movieRepository.searchMovie(mov.getTitle());
+        Movie m = this.movieRepository.searchMovie(mov.getTitle());
         model.addAttribute("movie", m);
 
         return "search";
