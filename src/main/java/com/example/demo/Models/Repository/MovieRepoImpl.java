@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class MovieRepository {
+public class MovieRepoImpl implements MovieRepo {
 
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
-    public MovieRepository() {
+    public MovieRepoImpl() {
 
         movies.add(new Movie("Terminator", 1985, "1:45", "Action"));
         movies.add(new Movie("Terminator 2", 1990, "1:50", "Action"));
@@ -26,13 +26,13 @@ public class MovieRepository {
         return movies;
     }
 
-    public void addMovie(Movie mov) {
+    public void add(Movie movie) {
 
-        movies.add(mov);
+        movies.add(movie);
 
     }
 
-    public Movie searchMovie(String title) {
+    public Movie search(String title) {
 
         for (int i = 0; i < movies.size(); i++) {
             if (movies.get(i).getTitle().equals(title)) {

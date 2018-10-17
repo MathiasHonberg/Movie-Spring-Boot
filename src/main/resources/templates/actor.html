@@ -83,15 +83,15 @@
     <li><a th:href="@{/actor}" th:text="Actors">Actors</a></li>
 </ul>
 <div class="container">
-    <h1 style="font-family: 'Arial Black'">Movies</h1>
+    <h1 style="font-family: 'Arial Black'">Actors</h1>
     <br>
     <a th:href="@{/create}" th:text="Create" class="nav-link; btn btn-success">Create</a>
     <br>
     <br>
-            <form action="@{/search}" th:object="${mov}" method="get">
-                <input id="filter" type="text" placeholder="Search.." name="search">
-                <button type="submit">Search</button>
-            </form>
+    <form action="@{/search}" th:object="${mov}" method="get">
+        <input id="filter" type="text" placeholder="Search.." name="search">
+        <button type="submit">Search</button>
+    </form>
     <br>
     <br>
     <br>
@@ -109,19 +109,19 @@
             <td th:text="${movie.duration}"/>
             <td th:text="${movie.genre}"/>
             <td>
-            <a class="glyphicon glyphicon-cog">
-                <!--<th:href="${'details/' + student.studentId}">-->
-                <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
-            </a>
-            <a class="glyphicon glyphicon-pencil">
-                <!--<th:href="${'edit/' + student.studentId}">-->
-                <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
-            </a>
-            <a class="glyphicon glyphicon-remove">
-                <!--<th:href="${'delete/' + student.studentId}">-->
-                <!--<button class="btn btn-danger glyphicon glyphicon-remove">delete</button>-->
-            </a>
-        </td>
+                <a class="glyphicon glyphicon-cog">
+                    <!--<th:href="${'details/' + student.studentId}">-->
+                    <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
+                </a>
+                <a class="glyphicon glyphicon-pencil">
+                    <!--<th:href="${'edit/' + student.studentId}">-->
+                    <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
+                </a>
+                <a class="glyphicon glyphicon-remove">
+                    <!--<th:href="${'delete/' + student.studentId}">-->
+                    <!--<button class="btn btn-danger glyphicon glyphicon-remove">delete</button>-->
+                </a>
+            </td>
         </tr>
     </table>
 </div>
