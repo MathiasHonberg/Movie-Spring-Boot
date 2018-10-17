@@ -2,7 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.Models.Actor;
 import com.example.demo.Models.Movie;
-import com.example.demo.Models.Repository.ActorRepoImpl;
+import com.example.demo.Services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +19,12 @@ public class ActorController {
     Logger log = Logger.getLogger(ActorController.class.getName());
 
     @Autowired
-    ActorRepoImpl actorRepo;
+    ActorService actorService;
 
     @GetMapping("/actor")
     public String actors(Model model){
 
-        List<Actor> actors = actorRepo.findAll();
+        List<Actor> actors = actorService.findAll();
         Movie hej = new Movie("Hej", 2, "Tobias", "Kurland");
 
         model.addAttribute("movies", hej);
@@ -46,8 +46,8 @@ public class ActorController {
     public String createactor(@ModelAttribute Actor actor, Model model){
 
 
-        actorRepo.add(actor);
-        model.addAttribute("actor", actorRepo.findAll());
+        actorService.add(actor);
+        model.addAttribute("actor", actorService.findAll());
 
 
         return "redirect:/actorlist";

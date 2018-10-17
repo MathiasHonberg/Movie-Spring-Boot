@@ -1,7 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Models.Movie;
-import com.example.demo.Models.Repository.MovieRepoImpl;
+import com.example.demo.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +17,12 @@ public class MovieController {
     private final Logger log = Logger.getLogger(MovieController.class.getName());
 
     @Autowired
-    private MovieRepoImpl movieRepository;
+    MovieService movieService;
 
 
     @GetMapping("/")
     public String index(Model model){
-        List<Movie> movies = movieRepository.findAll();
+        List<Movie> movies = movieService.findAll();
 
         model.addAttribute("movies", movies);
         return "index";
@@ -42,8 +42,8 @@ public class MovieController {
     public String create(@ModelAttribute Movie movie, Model model){
 
 
-        movieRepository.add(movie);
-        model.addAttribute("movie", movieRepository.findAll());
+        movieService.add(movie);
+        model.addAttribute("movie", movieService.findAll());
 
 
         return "redirect:/";
@@ -53,7 +53,7 @@ public class MovieController {
     @GetMapping("/search")
     public String search(Model model, @ModelAttribute("mov") Movie mov, BindingResult result){
 
-        Movie m = this.movieRepository.search(mov.getTitle());
+        Movie m = this.movieService.search(mov.getTitle());
         model.addAttribute("movie", mov);
 
         return "search";
