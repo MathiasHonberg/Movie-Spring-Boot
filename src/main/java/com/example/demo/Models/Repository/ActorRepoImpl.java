@@ -1,6 +1,10 @@
 package com.example.demo.Models.Repository;
 
 import com.example.demo.Models.Actor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,36 +13,64 @@ import java.util.List;
 @Repository
 public class ActorRepoImpl implements ActorRepo {
 
-    private ArrayList<Actor> actors = new ArrayList<Actor>();
+    @Autowired
+    JdbcTemplate jdbc;
 
-    public ActorRepoImpl() {
-
-        actors.add(new Actor("Mathias", "Hønberg", 24081994));
-        actors.add(new Actor("Tobias", "Kurland", 22081995));
+    public List<Actor> getActors() {
+        String sql = "SELECT * FROM actor";
+        RowMapper<Actor> rowMapper = new BeanPropertyRowMapper<>(Actor.class);
+        return this.jdbc.query(sql, rowMapper);
     }
+    /*
 
-    public List<Actor> findAll() {
+     */
 
-        return actors;
+    public Actor findActor(int actorId) {
+        String sql = "SELECT * FROM actor WHERE id = ?";
+        RowMapper<Actor> rowMapper = new BeanPropertyRowMapper<>(Actor.class);
+        Actor actor = jdbc.queryForObject(sql, rowMapper, actorId);
+        return actor;
     }
+    /*
 
-    public void add(Actor actor) {
+     */
+    public Actor addActor(Actor actor) {
+        String sql = "INSERT INTO movie (id, name, email) values (?, ?, ?)";
+        jdbc.update(sql, actor.getIdactor(), actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
 
-        actors.add(actor);
+        sql = "SELECT id FROM user WHERE name = ? and email=?";
+        int idactor = jdbc.queryForObject(sql, Integer.class, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
+
+        actor.setIdactor( idactor);
+        return actor;
+    }
+    /*
+
+     */
+    public Boolean deleteActor(int actorId) {
+        String sql = "DELETE FROM movie WHERE id=?";
+        return jdbc.update(sql, actorId) >= 0;
 
     }
+    /*
 
-    public Actor search(String title) {
+     */
+    public Actor updateActor(int actorId, Actor actor) {
+        String sql = "UPDATE movie SET firstname=?, lastname=?, dateofbirth=? WHERE id=?";
+        jdbc.update(sql, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth(), actor.getIdactor());
+        return findActor(actorId);
+    }
+    /*
 
-        for (int i = 0; i < actors.size(); i++) {
-            if (actors.get(i).getFirstName().equals(title)) {
-
-                return actors.get(i);
-            }
-
+     */
+    public boolean actorDetails(String firstName, int lastName, int dateofbirth) {
+        String sql = "SELECT count(*) FROM actor WHERE firstname=? and lastname=? and dateofbirth=? ";
+        int count = jdbc.queryForObject(sql, Integer.class, firstName, lastName, dateofbirth);
+        if (count == 0) {
+            return false;
+        } else {
+            return true;
         }
-        return null;
-
     }
 }
 

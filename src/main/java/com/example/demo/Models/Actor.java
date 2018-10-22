@@ -1,19 +1,39 @@
 package com.example.demo.Models;
 
 public class Actor {
-
+    private int idactor;
     private String firstName;
     private String lastName;
     private int dateOfBirth;
 
-    public Actor(String firstName, String lastName, int date) {
+    public Actor(int idactor, String firstName, String lastName, int dateOfBirth) {
+        this.idactor = idactor;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = date;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Actor() {
 
+    }
+
+    public Actor(String firstName, String lastName, int dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Actor(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public int getIdactor() {
+        return idactor;
+    }
+
+    public void setIdactor(int idactor) {
+        this.idactor = idactor;
     }
 
     public String getFirstName() {
@@ -32,20 +52,22 @@ public class Actor {
         this.lastName = lastName;
     }
 
-    public int getDate() {
+    public int getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDate(int date) {
-        this.dateOfBirth = date;
+    public void setDateOfBirth(int dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
     public String toString() {
-        return "Actor: " +
-                "\nFirst Name: " + firstName +
-                "\nLast Name: " + lastName +
-                "\nDate: " + dateOfBirth;
+        return "Actor{" +
+                "idactor=" + idactor +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
     }
 }
 

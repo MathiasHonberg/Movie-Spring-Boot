@@ -59,4 +59,31 @@ public class MovieController {
         return "search";
     }
 
+    @GetMapping("/edit")
+    public String edit(@RequestParam("actorid") int id, Model model)
+    {
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute  Movie movie)
+    {
+        return "redirect:/index";
+    }
+    /*
+    delete methods
+     */
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("movieid") int movieid, Model model)
+    {
+        return "delete";
+    }
+
+    @PostMapping("/")
+    public String deleteMovie(@RequestParam("movieid") int movieid)
+    {
+        return "redirect:/index";
+    }
+
 }

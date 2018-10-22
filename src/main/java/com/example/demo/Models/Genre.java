@@ -2,27 +2,43 @@ package com.example.demo.Models;
 
 public class Genre {
 
-    private String name;
+    private int idgenre;
+    private String genre;
 
-    public Genre(String name) {
-        this.name = name;
+    public Genre(int idgenre, String genre) {
+        this.idgenre = idgenre;
+        this.genre = genre;
+    }
+
+    public Genre(String genre) {
+        this.genre = genre;
     }
 
     public Genre() {
 
     }
 
-    public String getName() {
-        return name;
+    public int getIdgenre() {
+        return idgenre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdgenre(int idgenre) {
+        this.idgenre = idgenre;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     @Override
     public String toString() {
-        return "Genre: " +
-                "\nName: " + name;
+        return "Genre{" +
+                "idgenre=" + idgenre +
+                ", genre='" + genre + '\'' +
+                '}';
     }
 }
