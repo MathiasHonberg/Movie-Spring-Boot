@@ -14,17 +14,38 @@ public class MovieServiceImpl implements MovieService{
     MovieRepo movieRepo;
 
     @Override
-    public List<Movie> findAll() {
-        return null;
+    public List<Movie> getMovies() {
+
+        return movieRepo.getMovies();
     }
 
     @Override
-    public void add(Movie movie) {
-
+    public Movie findMovie(int id) {
+        return movieRepo.findMovie(id);
     }
 
     @Override
-    public Movie search(String s) {
-        return null;
+    public Movie addMovie(Movie movie) {
+        return movieRepo.addMovie(movie);
+    }
+
+    @Override
+    public Boolean deleteMovie(int movieId) {
+        return movieRepo.deleteMovie(movieId);
+    }
+
+    @Override
+    public Movie updateMovie(int movieId, Movie movie) {
+        return movieRepo.updateMovie(movieId, movie);
+    }
+
+    @Override
+    public boolean movieDetails(String title, String duration, String genre, int releaseYear) {
+        return movieRepo.movieDetails(title, duration, genre, releaseYear);
+    }
+
+    @Override
+    public Movie addActorToMovie() {
+        return movieRepo.addActorToMovie();
     }
 }

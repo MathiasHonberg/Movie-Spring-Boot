@@ -7,6 +7,7 @@ public class Actor {
     private int dateOfBirth;
 
     public Actor(int idactor, String firstName, String lastName, int dateOfBirth) {
+
         this.idactor = idactor;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,14 +19,21 @@ public class Actor {
     }
 
     public Actor(String firstName, String lastName, int dateOfBirth) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
     }
 
     public Actor(String firstName, String lastName) {
+
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Actor(String firstName) {
+
+        this.firstName = firstName;
     }
 
     public int getIdactor() {
@@ -60,14 +68,19 @@ public class Actor {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String displayActor(){
+
+        return "Actor: " +
+                "\nActor id: " + idactor +
+                "\nFirst Name: " + firstName +
+                "\nLast Name: " + lastName +
+                "\nDate of birth: " + dateOfBirth;
+
+    }
     @Override
     public String toString() {
-        return "Actor{" +
-                "idactor=" + idactor +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+
+        return "" + this.getFirstName() + " " + this.getLastName();
     }
 }
 

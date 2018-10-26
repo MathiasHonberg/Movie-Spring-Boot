@@ -38,8 +38,9 @@
 
 <ul>
     <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
-    <li><a th:href="@{/actorlist}" th:text="Actors">Actors</a></li>
+    <li><a th:href="@{/actor_index}" th:text="Actors">Actors</a></li>
 </ul>
+
 <div class="container">
 
     <h1 style="font-family: 'Arial Black'">Create Movie</h1>
@@ -48,7 +49,7 @@
         <p>Title: </p><input type="text" size="40" th:field="${movie.title}"/>
         <br>
         <br>
-        <p>Year: </p><input type="number" size="40" th:field="${movie.year}"/>
+        <p>Year: </p><input type="number" size="40" th:field="${movie.productionYear}"/>
         <br>
         <br>
         <p>Duration: </p><input type="text" size="40" th:field="${movie.duration}"/>
@@ -57,9 +58,13 @@
         <p>Genre: </p><input type="text" size="40" th:field="${movie.genre}"/>
         <br>
         <br>
+        <p>Actor: </p><input type="text" size="40" th:field="${movie.actor}"/>
+        <br>
+        <br>
         <input type="submit" class="btn btn-success" value="Create">
 
     </form>
 </div>
+
 </body>
 </html>

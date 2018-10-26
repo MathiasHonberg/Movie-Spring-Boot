@@ -22,12 +22,13 @@ public class MovieController {
 
     @GetMapping("/")
     public String index(Model model){
-        List<Movie> movies = movieService.findAll();
+        List<Movie> movies = movieService.getMovies();
 
         model.addAttribute("movies", movies);
         return "index";
     }
 
+//CREATE
     @GetMapping("/create")
     public String create(Model model){
 
@@ -42,48 +43,71 @@ public class MovieController {
     public String create(@ModelAttribute Movie movie, Model model){
 
 
-        movieService.add(movie);
-        model.addAttribute("movie", movieService.findAll());
+        movieService.addMovie(movie);
+        model.addAttribute("movie", movieService.getMovies());
 
 
         return "redirect:/";
-
     }
 
+//SEARCH
     @GetMapping("/search")
-    public String search(Model model, @ModelAttribute("mov") Movie mov, BindingResult result){
+    public String search(Model model, @ModelAttribute("mov") Movie mov, @RequestParam("movieid") int id){
 
-        Movie m = this.movieService.search(mov.getTitle());
+        Movie m = this.movieService.findMovie(id);
         model.addAttribute("movie", mov);
 
         return "search";
     }
 
-    @GetMapping("/edit")
-    public String edit(@RequestParam("actorid") int id, Model model)
-    {
+//EDIT
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        log.info("edit action called...");
+
+        model.addAttribute("movie", movieService.findMovie(id));
         return "edit";
     }
 
-    @PostMapping("/edit")
-    public String edit(@ModelAttribute  Movie movie)
-    {
-        return "redirect:/index";
-    }
-    /*
-    delete methods
-     */
+    @PutMapping("/edit")
+    public String edit(@ModelAttribute Movie movie, Model model) {
+        log.info("edit post action called...");
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("movieid") int movieid, Model model)
-    {
-        return "delete";
+        movieService.updateMovie(movie.getIdmovie(), movie);
+
+        model.addAttribute("movies", movieService.getMovies());
+        return "redirect:/";
     }
 
-    @PostMapping("/")
-    public String deleteMovie(@RequestParam("movieid") int movieid)
-    {
-        return "redirect:/index";
+//DELETE
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id, Model model) {
+    log.info("delete  action called...");
+
+    model.addAttribute("student", movieService.findMovie(id));
+
+    return "delete";
+}
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, Model model) {
+        log.info("delete post action called...");
+
+        movieService.deleteMovie(id);
+
+
+        model.addAttribute("movies", movieService.getMovies());
+        return "redirect:/";
+    }
+
+//DETAILS
+    @GetMapping("/read/{id}")
+    public String details(@PathVariable("id") int id, Model model) {
+    log.info("details action called...");
+
+
+    model.addAttribute("movie", movieService.findMovie(id));
+    return "read";
     }
 
 }

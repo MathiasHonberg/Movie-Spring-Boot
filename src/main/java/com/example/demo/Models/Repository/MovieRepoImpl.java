@@ -51,7 +51,7 @@ public class MovieRepoImpl implements MovieRepo {
 
 
                     Movie movie = new Movie(id, title, py, duration, g, a);
-                    //Movies movie = new Movies();
+
                     m.add(movie);
                 }
                 return m;
@@ -65,7 +65,7 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie findMovie(int id) {
         //this string is our message to our mysql database
-        String sql = "SELECT * FROM movie WHERE id = ?";
+        String sql = "SELECT * FROM movies WHERE idmovie = ?";
         RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
         Movie movie = jdbc.queryForObject(sql, rowMapper, id);
         return movie;
@@ -75,13 +75,9 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie addMovie(Movie movie) {
         //
-        String sql = "INSERT INTO movie (id, title, duration, genre, releaseyear) values (?, ?, ?,)";
-        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getDuration(), movie.getGenre(), movie.getProductionYear());
+        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?)";
+        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
         //
-        sql = "SELECT id FROM user WHERE title = ? and duration=? and genre=? and releaseyear=?";
-        int movieId = jdbc.queryForObject(sql, Integer.class, movie.getTitle(), movie.getDuration(), movie.getGenre(), movie.getProductionYear());
-
-        movie.setIdmovies(movieId);
         return movie;
     }
     /*
@@ -89,7 +85,7 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Boolean deleteMovie(int movieId) {
         //
-        String sql = "DELETE FROM movie WHERE id=?";
+        String sql = "DELETE FROM movies WHERE idmovie=?";
         return jdbc.update(sql, movieId) >= 0;
 
     }
@@ -98,8 +94,8 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie updateMovie(int movieId, Movie movie) {
         //
-        String sql = "UPDATE movie SET name=?, email=? WHERE id=?";
-        jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getIdmovie());
+        String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, idgenre=?, actor=? WHERE idmovie=?";
+        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
         return findMovie(movieId);
     }
     /*
@@ -107,7 +103,7 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public boolean movieDetails(String title, String duration, String genre, int releaseYear) {
         //
-        String sql = "SELECT count(*) FROM movie WHERE title=? and genre=? and duration=? and releaseYear=? ";
+        String sql = "SELECT count(*) FROM movies WHERE title=? and genre=? and duration=? and releaseYear=? ";
         int count = jdbc.queryForObject(sql, Integer.class, title, duration, genre, duration,releaseYear);
         if (count == 0) {
             return false;

@@ -34,11 +34,16 @@ public class Genre {
         this.genre = genre;
     }
 
+    public String displayGenre(){
+
+        return "Genre: " +
+                "\nGenre ID: " + idgenre +
+                "\nGenre: " + genre;
+    }
+
     @Override
     public String toString() {
-        return "Genre{" +
-                "idgenre=" + idgenre +
-                ", genre='" + genre + '\'' +
-                '}';
+
+        return "" + this.getGenre();
     }
 }

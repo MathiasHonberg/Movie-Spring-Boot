@@ -1,0 +1,54 @@
+DROP DATABASE IF EXISTS p1;
+CREATE DATABASE p1;
+use p1;
+CREATE TABLE `p1`.`actor` (
+ `idactor` INT NOT NULL AUTO_INCREMENT,
+ `firstName` VARCHAR(45) NULL,
+ `lastName` VARCHAR(45) NULL,
+ `dateOfBirth` YEAR NULL,
+ PRIMARY KEY (`idactor`));
+
+CREATE TABLE `p1`.`genre` (
+ `idgenre` INT NOT NULL AUTO_INCREMENT,
+ `genre` VARCHAR(45) NULL,
+ PRIMARY KEY (`idgenre`));
+
+CREATE TABLE `p1`.`movies` (
+ `idmovie` INT NOT NULL AUTO_INCREMENT,
+ `title` VARCHAR(45) NULL,
+ `productionYear` INT NULL,
+ `duration` VARCHAR(45) NULL,
+ `idgenre` INT(11) NULL,
+ `idactor` INT(11) NULL,
+ PRIMARY KEY (`idmovie`),
+ INDEX `idactor_idx` (`idactor` ASC),
+ INDEX `idgenre_idx` (`idgenre` ASC),
+ CONSTRAINT `idactor`
+   FOREIGN KEY (`idactor`)
+   REFERENCES `p1`.`actor` (`idactor`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION,
+ CONSTRAINT `idgenre`
+   FOREIGN KEY (`idgenre`)
+   REFERENCES `p1`.`genre` (`idgenre`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION);
+
+insert into actor values
+(default , 'Simon', 'Smith', 1992),
+(default , 'Mathias', 'Hønberg', 1994),
+(default , 'Tobias', 'Kurland',1994),
+(default , 'Alex', 'Banke', 1991);
+insert into genre values
+(default , 'Action'),
+(default , 'Romance'),
+(default , 'Horror'),
+(default , 'Sci-fi'),
+(default , 'Adventure'),
+(default , 'Animation'),
+(default , 'Comedy');
+insert into movies values
+(default , 'Titanic', 1998, '02:11', 2, 1),
+(default , 'Frozen', 2011, '01:52', 6, 4),
+(default , 'Men in black', 1997, '02:11', 4, 3),
+(default , 'Halloween', 1998, '02:11', 3, 2);

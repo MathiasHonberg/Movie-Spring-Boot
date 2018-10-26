@@ -93,12 +93,12 @@ public class Movie {
     @Override
     public String toString() {
         return "Movies: " +
-                "\nIdmovie: " + idmovie +
+                "\nMovie ID: " + idmovie +
                 "\nTitle: " + title  +
                 "\nProductionYear: " + productionYear +
                 "\nDuration: " + duration +
-                "\nGenre: " + genre +
-                "\nActor: " + actor;
+                "\nGenre: " + genre.displayGenre() +
+                "\nActor: " + actor.displayActor();
     }
 
 }
