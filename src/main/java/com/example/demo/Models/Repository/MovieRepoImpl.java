@@ -77,7 +77,9 @@ public class MovieRepoImpl implements MovieRepo {
         //
         String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?)";
         jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
-        //
+
+        sql = "SELECT id FROM movie WHERE title=? and duration=?";
+        int movieid = jdbc.queryForObject(sql, Integer.class, movie.getTitle(), movie.getDuration());
         return movie;
     }
     /*

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <style>
         /* Black table */
@@ -47,20 +47,27 @@
     <form method="Post" th:action="@{/create}">
 
         <p>Title: </p><input type="text" size="40" th:field="${movie.title}"/>
-        <br>
-        <br>
+        <br><br>
         <p>Year: </p><input type="number" size="40" th:field="${movie.productionYear}"/>
-        <br>
-        <br>
+        <br><br>
         <p>Duration: </p><input type="text" size="40" th:field="${movie.duration}"/>
+        <br><br>
+         <p>Genre: </p>
+        <select name="movie" th:field="${movie.genre.genre}">
+            <option value="${genre.getIdGenre(1)}">Action</option>
+            <option value="Romance">Romance</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Comedy">Comedy</option>
+        </select>
+        <br><br>
+        <!--<p>Genre: </p><input type="text" size="40" th:field="${movie.genre}"/>
         <br>
-        <br>
-        <p>Genre: </p><input type="text" size="40" th:field="${movie.genre}"/>
-        <br>
-        <br>
-        <p>Actor: </p><input type="text" size="40" th:field="${movie.actor}"/>
-        <br>
-        <br>
+        <br> -->
+        <h4 style="font-family: 'Arial Black'">Actor</h4>
+        <p>First name: </p><input type="text" size="40" th:field="${movie.actor.firstName}"/>
+        <br><br>
+        <p>Last name: </p><input type="text" size="40" th:field="${movie.actor.lastName}"/>
+        <br><br>
         <input type="submit" class="btn btn-success" value="Create">
 
     </form>

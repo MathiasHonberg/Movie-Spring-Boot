@@ -84,7 +84,7 @@ public class MovieController {
     public String delete(@PathVariable("id") int id, Model model) {
     log.info("delete  action called...");
 
-    model.addAttribute("student", movieService.findMovie(id));
+    model.addAttribute("movie", movieService.findMovie(id));
 
     return "delete";
 }
