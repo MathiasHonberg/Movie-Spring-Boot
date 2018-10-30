@@ -102,13 +102,15 @@
         <br>
         <br>
         <p>Enter Genre</p>
-        <input type="text" size="40" th:field="${movie.genre}"/>
+        <input type="text" size="40" th:field="${movie.genre.genre}"/>
+        <br>
+        <h3>Actor</h3>
+        <p>First Name: </p>
+        <input type="text" size="40" th:field="${movie.actor.firstName}"/>
         <br>
         <br>
-        <p>Enter Actor</p>
-        <input type="text" size="40" th:field="${movie.actor}"/>
-        <br>
-        <br>
+        <p>Last Name: </p>
+        <input type="text" size="40" th:field="${movie.actor.lastName}"/>
         <input class="btn btn-success" type="submit" value="Edit"/>
     </form>
 

@@ -52,17 +52,15 @@
         <br><br>
         <p>Duration: </p><input type="text" size="40" th:field="${movie.duration}"/>
         <br><br>
-         <p>Genre: </p>
-        <select name="movie" th:field="${movie.genre.genre}">
-            <option value="${genre.getIdGenre(1)}">Action</option>
+        <!--<select name="movie" th:field="${movie.genre.idgenre}">
+            <option value="movie.genre">Action</option>
             <option value="Romance">Romance</option>
             <option value="Thriller">Thriller</option>
             <option value="Comedy">Comedy</option>
-        </select>
-        <br><br>
-        <!--<p>Genre: </p><input type="text" size="40" th:field="${movie.genre}"/>
+        </select> -->
+        <p>Genre: </p><input type="text" size="40" th:field="${movie.genre.genre}"/>
         <br>
-        <br> -->
+        <br>
         <h4 style="font-family: 'Arial Black'">Actor</h4>
         <p>First name: </p><input type="text" size="40" th:field="${movie.actor.firstName}"/>
         <br><br>

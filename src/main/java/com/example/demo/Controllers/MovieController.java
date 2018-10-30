@@ -102,7 +102,7 @@ public class MovieController {
 
 //DETAILS
     @GetMapping("/read/{id}")
-    public String details(@PathVariable("id") int id, Model model) {
+    public String details(@PathVariable Integer id, Model model) {
     log.info("details action called...");
 
 

@@ -38,12 +38,12 @@
 
 <ul>
     <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
-    <li><a th:href="@{/actorlist}" th:text="Actors">Actors</a></li>
+    <li><a th:href="@{/actor_index}" th:text="Actors">Actors</a></li>
 </ul>
 <div class="container">
 
     <h1 style="font-family: 'Arial Black'">Create Actor</h1>
-    <form method="Post" th:action="@{/createactor}">
+    <form method="Post" th:action="@{/create_actor}">
 
         <p>First Name: </p><input type="text" size="40" th:field="${actor.firstName}"/>
         <br>
@@ -51,7 +51,7 @@
         <p>Last Name: </p><input type="text" size="40" th:field="${actor.lastName}"/>
         <br>
         <br>
-        <p>Date: </p><input type="number" size="40" th:field="${actor.date}"/>
+        <p>Date: </p><input type="number" size="40" th:field="${actor.dateOfBirth}"/>
         <br>
         <br>
         <input type="submit" class="btn btn-success" value="Create">

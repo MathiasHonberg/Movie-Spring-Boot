@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class MovieRepoImpl implements MovieRepo {
 
-    ArrayList<Movie> m = new ArrayList<>();
+    //ArrayList<Movie> m = new ArrayList<>();
 
 
     @Autowired
@@ -29,6 +29,8 @@ public class MovieRepoImpl implements MovieRepo {
     this method contacts our database to get all movies
      */
     public List<Movie> getMovies() {
+
+        ArrayList<Movie> m = new ArrayList<>();
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
                 " actor.firstName, actor.lastName FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
@@ -75,11 +77,13 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie addMovie(Movie movie) {
         //
-        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?)";
-        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
+        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?, ?)";
+        jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
 
-        sql = "SELECT id FROM movie WHERE title=? and duration=?";
+        /*sql = "SELECT id FROM movie WHERE title=? and duration=?";
         int movieid = jdbc.queryForObject(sql, Integer.class, movie.getTitle(), movie.getDuration());
+
+        movie.setIdmovies(movieid);*/
         return movie;
     }
     /*
@@ -96,8 +100,8 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie updateMovie(int movieId, Movie movie) {
         //
-        String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, idgenre=?, actor=? WHERE idmovie=?";
-        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
+        String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, genre.genre=?, actor.firstName=?, actor.lastName=? WHERE idmovie=?";
+        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor().getFirstName(), movie.getActor().getLastName());
         return findMovie(movieId);
     }
     /*

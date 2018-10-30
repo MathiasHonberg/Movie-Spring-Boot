@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.Models.Actor;
+import com.example.demo.Models.Repository.ActorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +11,15 @@ import java.util.List;
 public class ActorServiceImpl implements ActorService{
 
     @Autowired
-    ActorService actorService;
+    ActorRepo actorRepo;
 
     @Override
-    public List<Actor> findAll() {
-        return null;
+    public List<Actor> getActors() {
+        return actorRepo.getActors();
     }
 
     @Override
-    public void add(Actor actor) {
+    public void addActor(Actor actor) {
 
     }
 

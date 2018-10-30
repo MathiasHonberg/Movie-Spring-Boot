@@ -1,7 +1,6 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Models.Actor;
-import com.example.demo.Models.Movie;
 import com.example.demo.Services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +22,11 @@ public class ActorController {
     ActorService actorService;
 
     @GetMapping("/actor_index")
-    public String overviewActors(Model model)
-    {
-        return "actor_index";
+    public String actor_index(Model model) {
+        List<Actor> actors = actorService.getActors();
+
+        model.addAttribute("actors", actors);
+        return "/actor_index";
     }
 
     @GetMapping("/read_actor")
@@ -34,50 +35,53 @@ public class ActorController {
         return "read_actor";
     }
 
-    /*
-    Create Methods
-     */
+
+//CREATE METHODS
+
     @GetMapping("/create_actor")
     public String createActor(Model model)
     {
-
+        log.info("create actor action called...");
+        model.addAttribute("actor", new Actor());
         return "create_actor";
     }
 
     @PostMapping("/create_actor")
-    public String createActor(@ModelAttribute Actor actor)
+    public String createActor(@ModelAttribute Actor actor, Model model)
     {
-        return "redirect:/actor_index";
+        actorService.addActor(actor);
+
+            model.addAttribute("actor", actorService.getActors());
+
+            return "redirect:/actor_index";
     }
 
-    /*
-    Edit Methods
-     */
+
+//Edit Methods
+
     @GetMapping("/edit_actor")
-    public String editActor(@RequestParam("actorid") int id, Model model)
-    {
-        return "edit_actor";
+    public String editActor(@RequestParam("actorid") int id, Model model){
+
+        return "/actor_index";
     }
 
     @PostMapping("/edit_actor")
-    public String editActor(@ModelAttribute  Actor actor)
-    {
+    public String editActor(@ModelAttribute  Actor actor){
+
         return "redirect:/actor_edit";
     }
 
+//Delete Methods
 
-    /*
-    Delete Methods
-     */
     @GetMapping("/delete_actor")
-    public String deleteActor(@RequestParam("actorid") int actorid, Model model)
-    {
+    public String deleteActor(@RequestParam("actorid") int actorid, Model model){
+
         return "delete_actor";
     }
 
     @PostMapping("/delete_actor")
-    public String deleteActor(@RequestParam("actorid") int actorid)
-    {
+    public String deleteActor(@RequestParam("actorid") int actorid){
+
         return "redirect:/actor_index";
     }
 }

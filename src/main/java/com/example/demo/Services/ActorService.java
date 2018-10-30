@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public interface ActorService {
-    List<Actor> findAll();
-    void add(Actor actor);
+    List<Actor> getActors();
+    void addActor(Actor actor);
     Actor search(String s);
 
 }

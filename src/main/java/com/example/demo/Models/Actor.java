@@ -18,6 +18,12 @@ public class Actor {
 
     }
 
+    public Actor(int idactor, String firstName, String lastName) {
+        this.idactor = idactor;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Actor(String firstName, String lastName, int dateOfBirth) {
 
         this.firstName = firstName;
