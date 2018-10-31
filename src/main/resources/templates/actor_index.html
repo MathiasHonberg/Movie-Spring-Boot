@@ -104,16 +104,15 @@
             <th></th>
         </tr>
         <tr th:each="actor : ${actors}">
-            <td th:text="${actor.idactor}"/>
             <td th:text="${actor.firstName}"/>
             <td th:text="${actor.lastName}"/>
             <td th:text="${actor.dateOfBirth}"/>
             <td>
-                <a class="glyphicon glyphicon-cog" th:href="${'read_actor/' + actor.idactor}">
+                <a class="glyphicon glyphicon-pencil" th:href="${'read_actor/' + actor.idactor}">
                     <!--<th:href="${'details/' + student.studentId}">-->
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
                 </a>
-                <a class="glyphicon glyphicon-pencil" th:href="${'edit_actor/' + actor.idactor}">
+                <a class="glyphicon glyphicon-cog" th:href="${'edit_actor/' + actor.idactor}">
                     <!--<th:href="${'edit/' + student.studentId}">-->
                     <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
                 </a>

@@ -19,10 +19,25 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public void addActor(Actor actor) {
+    public Actor addActor(Actor actor) {
+        return actorRepo.addActor(actor);
 
     }
 
+    public Actor findActor(int id){
+
+        return actorRepo.findActor(id);
+    }
+
+    public Actor updateActor(int id, Actor actor){
+
+        return actorRepo.updateActor(id, actor);
+    }
+
+    public Boolean deleteActor(int id){
+
+        return actorRepo.deleteActor(id);
+    }
     @Override
     public Actor search(String s) {
         return null;

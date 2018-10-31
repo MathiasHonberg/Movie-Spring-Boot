@@ -53,7 +53,8 @@ public class ActorRepoImpl implements ActorRepo {
      */
 
     public Actor findActor(int actorId) {
-        String sql = "SELECT * FROM actor WHERE id = ?";
+        String sql = "SELECT * FROM actor WHERE idactor = ?";
+
         RowMapper<Actor> rowMapper = new BeanPropertyRowMapper<>(Actor.class);
         Actor actor = jdbc.queryForObject(sql, rowMapper, actorId);
         return actor;
@@ -62,7 +63,8 @@ public class ActorRepoImpl implements ActorRepo {
     public Actor addActor(Actor actor) {
 
         String sql = "INSERT INTO actor values (default, ?, ?, ?)";
-        jdbc.update(sql, actor.getIdactor(), actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
+
+        jdbc.update(sql, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
 
         return actor;
     }
@@ -83,7 +85,7 @@ public class ActorRepoImpl implements ActorRepo {
 
      */
     public Boolean deleteActor(int actorId) {
-        String sql = "DELETE FROM movie WHERE id=?";
+        String sql = "DELETE FROM actor WHERE idactor=?";
         return jdbc.update(sql, actorId) >= 0;
 
     }
@@ -91,8 +93,8 @@ public class ActorRepoImpl implements ActorRepo {
 
      */
     public Actor updateActor(int actorId, Actor actor) {
-        String sql = "UPDATE movie SET firstname=?, lastname=?, dateofbirth=? WHERE id=?";
-        jdbc.update(sql, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth(), actor.getIdactor());
+        String sql = "UPDATE actor SET firstname=?, lastname=?, dateofbirth=? WHERE idactor=? ";
+        jdbc.update(sql, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
         return findActor(actorId);
     }
     /*

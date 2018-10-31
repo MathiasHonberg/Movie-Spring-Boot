@@ -31,6 +31,7 @@ public class MovieRepoImpl implements MovieRepo {
     public List<Movie> getMovies() {
 
         ArrayList<Movie> m = new ArrayList<>();
+
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
                 " actor.firstName, actor.lastName FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
@@ -67,7 +68,11 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie findMovie(int id) {
         //this string is our message to our mysql database
-        String sql = "SELECT * FROM movies WHERE idmovie = ?";
+        String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
+                " actor.firstName, actor.lastName FROM movies " +
+                "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
+                "INNER JOIN actor ON movies.idactor = actor.idactor " +
+                "WHERE idmovie=? ";
         RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
         Movie movie = jdbc.queryForObject(sql, rowMapper, id);
         return movie;
@@ -76,14 +81,11 @@ public class MovieRepoImpl implements MovieRepo {
     this method contacts our database to add a new movie to the database
      */
     public Movie addMovie(Movie movie) {
-        //
-        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?, ?)";
-        jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor());
 
-        /*sql = "SELECT id FROM movie WHERE title=? and duration=?";
-        int movieid = jdbc.queryForObject(sql, Integer.class, movie.getTitle(), movie.getDuration());
 
-        movie.setIdmovies(movieid);*/
+        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?)";
+        jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre().getIdgenre(), movie.getActor().getIdactor());
+
         return movie;
     }
     /*

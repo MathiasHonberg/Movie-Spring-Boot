@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <style>
+        .topnav .search-container {
+            float: right;
+        }
+
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+
+        .topnav .search-container button {
+            float: right;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+        table {
+            opacity: 1;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 20px;
+
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align:left;
+            padding: 8px;
+        }
+
+        /*tr:nth-child(even) {
+            background-color: #dddddd;
+        }*/
+        /* Black table */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111111;
+        }
+    </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Movie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<ul>
+    <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
+    <li><a th:href="@{/actor_index}" th:text="Actors">Actors</a></li>
+</ul>
+
+<div class="container">
+    <h1 style="font-family: 'Arial Black'">Edit actor with id: <span th:text="${actor.idactor}"></span></h1>
+    <form th:method="Put" th:action="@{/edit_actor}" th:object="${actor}">
+        <!--If you dont send the ID, JPA will create a new student object-->
+        <input type="hidden" th:field="${actor.idactor}"/>
+
+        <p>Enter First Name</p>
+        <input type="text" size="40" th:field="${actor.firstName}"/>
+        <br>
+        <br>
+        <p>Enter Last Name</p>
+        <input type="text" size="40" th:field="${actor.lastName}"/>
+        <br>
+        <br>
+        <p>Enter Date of Birth</p>
+        <input type="text" size="40" th:field="${actor.dateOfBirth}"/>
+        <br><br>
+        <input class="btn btn-success" type="submit" value="Edit"/>
+    </form>
+
+</div>
 
 </body>
 </html>

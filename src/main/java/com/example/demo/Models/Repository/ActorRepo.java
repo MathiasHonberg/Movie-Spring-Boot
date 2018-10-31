@@ -11,8 +11,8 @@ public interface ActorRepo {
     List<Actor> getActors();
     Actor findActor(int actorId);
     Actor addActor(Actor actor);
-    Boolean deleteActor(int actorId);
     Actor updateActor(int actorId, Actor actor);
+    Boolean deleteActor(int id);
     boolean actorDetails(String firstName, int lastName, int dateofbirth);
 
 }

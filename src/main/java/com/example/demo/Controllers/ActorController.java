@@ -5,10 +5,7 @@ import com.example.demo.Services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,9 +26,10 @@ public class ActorController {
         return "/actor_index";
     }
 
-    @GetMapping("/read_actor")
-    public String detailsActor(@RequestParam("memberId") int actorid, Model model)
-    {
+    @GetMapping("/read_actor/{id}")
+    public String detailsActor(@PathVariable Integer id, Model model) {
+
+        model.addAttribute("actor", actorService.findActor(id));
         return "read_actor";
     }
 
@@ -42,6 +40,7 @@ public class ActorController {
     public String createActor(Model model)
     {
         log.info("create actor action called...");
+
         model.addAttribute("actor", new Actor());
         return "create_actor";
     }
@@ -59,28 +58,38 @@ public class ActorController {
 
 //Edit Methods
 
-    @GetMapping("/edit_actor")
-    public String editActor(@RequestParam("actorid") int id, Model model){
+    @GetMapping("/edit_actor/{id}")
+    public String editActor(@PathVariable Integer id, Model model){
+        log.info("edit actor action called");
 
-        return "/actor_index";
+        model.addAttribute("actor", actorService.findActor(id));
+        return "edit_actor";
     }
 
-    @PostMapping("/edit_actor")
-    public String editActor(@ModelAttribute  Actor actor){
+    @PutMapping("/edit_actor")
+    public String editActor(@ModelAttribute Actor actor, Model model){
+        log.info("edit actor Post action called");
 
-        return "redirect:/actor_edit";
+        actorService.updateActor(actor.getIdactor(), actor);
+
+        model.addAttribute("movies", actorService.getActors());
+
+        return "redirect:/actor_index";
     }
 
 //Delete Methods
 
-    @GetMapping("/delete_actor")
-    public String deleteActor(@RequestParam("actorid") int actorid, Model model){
+    @GetMapping("/delete_actor/{id}")
+    public String deleteActor(@PathVariable Integer id, Model model){
 
+        model.addAttribute("actor", actorService.findActor(id));
         return "delete_actor";
     }
 
     @PostMapping("/delete_actor")
-    public String deleteActor(@RequestParam("actorid") int actorid){
+    public String deleteActor(@PathVariable Integer id){
+
+        actorService.deleteActor(id);
 
         return "redirect:/actor_index";
     }
