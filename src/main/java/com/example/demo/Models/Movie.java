@@ -93,7 +93,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movies: " +
-                "\nMovie ID: " + idmovie +
+                "\nMovie ID: " + this.idmovie +
                 "\nTitle: " + title  +
                 "\nProductionYear: " + productionYear +
                 "\nDuration: " + duration +

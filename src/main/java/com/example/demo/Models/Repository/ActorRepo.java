@@ -9,9 +9,9 @@ import java.util.List;
 public interface ActorRepo {
 
     List<Actor> getActors();
-    Actor findActor(int actorId);
+    Actor findActor(int id);
     Actor addActor(Actor actor);
-    Actor updateActor(int actorId, Actor actor);
+    Actor updateActor(int id, Actor actor);
     Boolean deleteActor(int id);
     boolean actorDetails(String firstName, int lastName, int dateofbirth);
 

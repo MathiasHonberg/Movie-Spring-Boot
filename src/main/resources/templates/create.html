@@ -52,15 +52,29 @@
         <br><br>
         <p>Duration: </p><input type="text" size="40" th:field="${movie.duration}"/>
         <br><br>
-        <!--<select name="movie" th:field="${movie.genre.idgenre}">
-            <option value="movie.genre">Action</option>
-            <option value="Romance">Romance</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Comedy">Comedy</option>
-        </select> -->
-        <p>Genre: </p><input type="number" size="40" th:field="${movie.genre.idgenre}"/>
+        <p>Genre:</p>
+        <select name="movie" th:field="${movie.genre.idgenre}">
+            <option value="1">Action</option>
+            <option value="2">Romance</option>
+            <option value="3">Horror</option>
+            <option value="4">Sci-fi</option>
+            <option value="5">Adventure</option>
+            <option value="6">Animation</option>
+            <option value="7">Comedy</option>
+            <option value="8">Krimi</option>
+        </select>
+        <!--<p>Genre: </p><input type="number" size="40" th:field="${movie.genre.idgenre}"/>
+        <br><br>-->
         <br><br>
-        <p>Actor: </p><input type="number" size="40" th:field="${movie.actor.idactor}"/>
+        <p>Actor: </p>
+        <select name="movie" th:field="${movie.actor.idactor}">
+            <option value="1">Simon Smith</option>
+            <option value="2">Mathias Hønberg</option>
+            <option value="3">Tobias Kurland</option>
+            <option value="4">Alex Banke</option>
+            <option value="5">Faisal Jarkass</option>
+            <option value="6">Claus Bove</option>
+        </select>
         <br><br>
         <input type="submit" class="btn btn-success" value="Create">
 

@@ -52,11 +52,11 @@ public class ActorRepoImpl implements ActorRepo {
 
      */
 
-    public Actor findActor(int actorId) {
+    public Actor findActor(int id) {
         String sql = "SELECT * FROM actor WHERE idactor = ?";
 
         RowMapper<Actor> rowMapper = new BeanPropertyRowMapper<>(Actor.class);
-        Actor actor = jdbc.queryForObject(sql, rowMapper, actorId);
+        Actor actor = jdbc.queryForObject(sql, rowMapper, id);
         return actor;
     }
 

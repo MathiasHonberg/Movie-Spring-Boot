@@ -73,6 +73,7 @@ public class MovieRepoImpl implements MovieRepo {
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
                 "INNER JOIN actor ON movies.idactor = actor.idactor " +
                 "WHERE idmovie=? ";
+
         RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
         Movie movie = jdbc.queryForObject(sql, rowMapper, id);
         return movie;
@@ -102,8 +103,8 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public Movie updateMovie(int movieId, Movie movie) {
         //
-        String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, genre.genre=?, actor.firstName=?, actor.lastName=? WHERE idmovie=?";
-        jdbc.update(sql, movie.getIdmovie(), movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre(), movie.getActor().getFirstName(), movie.getActor().getLastName());
+        String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, idgenre=?, idactor=? WHERE idmovie=?";
+        jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre().getIdgenre(), movie.getActor().getIdactor());
         return findMovie(movieId);
     }
     /*

@@ -89,28 +89,25 @@
         <!--If you dont send the ID, JPA will create a new student object-->
         <input type="hidden" th:field="${movie.idmovie}"/>
 
-        <p>Enter title</p>
+        <p>Enter title:</p>
         <input type="text" size="40" th:field="${movie.title}"/>
         <br>
         <br>
-        <p>Enter Production Year</p>
+        <p>Enter Production Year:</p>
         <input type="number" size="40" th:field="${movie.productionYear}"/>
         <br>
         <br>
-        <p>Enter Duration</p>
+        <p>Enter Duration:</p>
         <input type="text" size="40" th:field="${movie.duration}"/>
         <br>
         <br>
-        <p>Enter Genre</p>
-        <input type="text" size="40" th:field="${movie.genre.genre}"/>
-        <br>
-        <h3>Actor</h3>
-        <p>First Name: </p>
-        <input type="text" size="40" th:field="${movie.actor.firstName}"/>
+        <p>Enter Genre:</p>
+        <input type="text" size="40" th:field="${movie.genre.idgenre}"/>
         <br>
         <br>
-        <p>Last Name: </p>
-        <input type="text" size="40" th:field="${movie.actor.lastName}"/>
+        <p>Enter Actor:</p>
+
+        <input type="text" size="40" th:field="${movie.actor.idactor}"/>
         <input class="btn btn-success" type="submit" value="Edit"/>
     </form>
 

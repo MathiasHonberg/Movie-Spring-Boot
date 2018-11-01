@@ -26,6 +26,8 @@ public class ActorController {
         return "/actor_index";
     }
 
+//READ METHODS
+
     @GetMapping("/read_actor/{id}")
     public String detailsActor(@PathVariable Integer id, Model model) {
 

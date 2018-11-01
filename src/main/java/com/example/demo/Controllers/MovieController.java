@@ -55,7 +55,7 @@ public class MovieController {
     public String search(Model model, @ModelAttribute("mov") Movie mov, @RequestParam("movieid") int id){
 
         Movie m = this.movieService.findMovie(id);
-        model.addAttribute("movie", mov);
+        model.addAttribute("mov", m);
 
         return "search";
     }
@@ -104,7 +104,6 @@ public class MovieController {
     @GetMapping("/read/{id}")
     public String details(@PathVariable Integer id, Model model) {
     log.info("details action called...");
-
 
     model.addAttribute("movie", movieService.findMovie(id));
     return "read";
