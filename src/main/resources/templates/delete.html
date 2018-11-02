@@ -86,10 +86,10 @@
 <div class="container">
     <h2 style="font-family: 'Arial Black'">Are you sure you want to delete</h2>
 
-    <form th:action="@{/delete}" method="delete">
+    <form th:action="@{/delete}" method="Post">
         <input type="hidden" th:field="${movie.idmovie}"/>
         <input class="btn btn-danger" type="submit" value="YES"/>
-        <a href="/" class="btn btn-success w">NO</a>
+        <a th:href="@{/}" class="btn btn-success w">NO</a>
     </form>
 </div>
 

@@ -89,14 +89,14 @@ public class MovieController {
     return "delete";
 }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model) {
         log.info("delete post action called...");
 
         movieService.deleteMovie(id);
 
 
-        model.addAttribute("movies", movieService.getMovies());
+        //model.addAttribute("movie", movieService.getMovies());
         return "redirect:/";
     }
 

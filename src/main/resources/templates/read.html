@@ -85,7 +85,7 @@
 
 <div class="container">
     <h1 style="font-family: 'Arial Black'">Movie with ID: <span th:text="${movie.idmovie}"></span></h1>
-    <form th:method="Put" th:action="@{/edit}" th:object="${movie}">
+    <form th:method="Put" th:action="@{/}" th:object="${movie}">
         <!--If you dont send the ID, JPA will create a new student object-->
         <input type="hidden" th:field="${movie.idmovie}"/>
     <br>

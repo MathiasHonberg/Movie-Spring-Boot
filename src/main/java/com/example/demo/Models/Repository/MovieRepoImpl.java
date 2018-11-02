@@ -92,10 +92,10 @@ public class MovieRepoImpl implements MovieRepo {
     /*
     this method contacts our database to deletes a specific movie
      */
-    public Boolean deleteMovie(int movieId) {
+    public void deleteMovie(int movieId) {
         //
         String sql = "DELETE FROM movies WHERE idmovie=?";
-        return jdbc.update(sql, movieId) >= 0;
+        jdbc.update(sql);
 
     }
     /*

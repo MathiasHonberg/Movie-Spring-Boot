@@ -30,8 +30,8 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public Boolean deleteMovie(int movieId) {
-        return movieRepo.deleteMovie(movieId);
+    public void deleteMovie(int movieId) {
+        movieRepo.deleteMovie(movieId);
     }
 
     @Override
