@@ -55,10 +55,17 @@
 <body>
 <ul>
     <li><a th:href="@{/}" th:text="Movies">Movies</a></li>
-    <li><a th:href="@{/actorlist}" th:text="Actors">Actor</a></li>
+    <li><a th:href="@{/actor_index}" th:text="Actors">Actor</a></li>
 </ul>
 <div class="container">
-    <h1 style="font-family: 'Arial Black'">Movie</h1>
+    <h1 style="font-family: 'Arial Black'">Search movie title</h1>
+
+
+    <br>
+    <form th:method="Post" th:action="@{/search}" th:object="${smovie}">
+         <input type="text" name="searching">
+        <input type="submit" value="Search">
+    </form>
     <br>
     <br>
     <table>
@@ -67,12 +74,14 @@
             <th>Year</th>
             <th>Duration</th>
             <th>Genre</th>
+            <th>Actor</th>
         </tr>
-        <tr th:text="movie : ${movie}">
+        <tr th:each="movie : ${smovie}">
             <td th:text="${movie.title}"/>
-            <td th:text="${movie.year}"/>
+            <td th:text="${movie.productionYear}"/>
             <td th:text="${movie.duration}"/>
             <td th:text="${movie.genre}"/>
+            <td th:text="${movie.actor}"/>
         </tr>
     </table>
 </div>

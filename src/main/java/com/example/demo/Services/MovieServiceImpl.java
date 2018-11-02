@@ -40,8 +40,8 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public boolean movieDetails(String title, String duration, String genre, int releaseYear) {
-        return movieRepo.movieDetails(title, duration, genre, releaseYear);
+    public List<Movie> search(String searching) {
+        return movieRepo.search(searching);
     }
 
     @Override

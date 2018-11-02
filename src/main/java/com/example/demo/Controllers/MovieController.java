@@ -5,7 +5,6 @@ import com.example.demo.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,12 +51,18 @@ public class MovieController {
 
 //SEARCH
     @GetMapping("/search")
-    public String search(Model model, @ModelAttribute("mov") Movie mov, @RequestParam("movieid") int id){
-
-        Movie m = this.movieService.findMovie(id);
-        model.addAttribute("mov", m);
-
+    public String search(){
+        log.info("Search action called...");
         return "search";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam(defaultValue = "") String searching, Model model){
+        log.info("Simon Smith is delicious");
+        List<Movie> m = movieService.search(searching);
+        model.addAttribute("smovie", m);
+
+        return "/search";
     }
 
 //EDIT
@@ -86,7 +91,7 @@ public class MovieController {
 
     model.addAttribute("movie", movieService.findMovie(id));
 
-    return "delete";
+    return "/delete";
 }
 
     @PostMapping("/delete/{id}")

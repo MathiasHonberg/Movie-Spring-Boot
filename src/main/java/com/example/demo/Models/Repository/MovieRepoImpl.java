@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -19,7 +20,6 @@ import java.util.List;
 @Repository
 public class MovieRepoImpl implements MovieRepo {
 
-    //ArrayList<Movie> m = new ArrayList<>();
 
 
     @Autowired
@@ -30,12 +30,14 @@ public class MovieRepoImpl implements MovieRepo {
      */
     public List<Movie> getMovies() {
 
+
         ArrayList<Movie> m = new ArrayList<>();
 
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
                 " actor.firstName, actor.lastName FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
-                "INNER JOIN actor ON movies.idactor = actor.idactor";
+                "INNER JOIN actor ON movies.idactor = actor.idactor " +
+                "ORDER BY title";
 
 
         // Fra sql til list.
@@ -110,15 +112,39 @@ public class MovieRepoImpl implements MovieRepo {
     /*
     this method contacts our database to showcase a specific movie
      */
-    public boolean movieDetails(String title, String duration, String genre, int releaseYear) {
-        //
-        String sql = "SELECT count(*) FROM movies WHERE title=? and genre=? and duration=? and releaseYear=? ";
-        int count = jdbc.queryForObject(sql, Integer.class, title, duration, genre, duration,releaseYear);
-        if (count == 0) {
-            return false;
-        } else {
-            return true;
-        }
+    public List<Movie> search(String searching) {
+
+        String t = "'%" + searching + "%'";
+
+        ArrayList<Movie> m = new ArrayList<>();
+        String sql = "SELECT idmovie, title, productionYear, duration, genre.genre, " +
+                "actor.firstName, actor.lastName FROM movies " +
+                "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
+                "INNER JOIN actor ON movies.idactor = actor.idactor " +
+                "WHERE title LIKE " + t + " ORDER BY title ";
+
+
+        return this.jdbc.query(sql, new ResultSetExtractor<List<Movie>>() {
+            @Override
+            public List<Movie> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+                while (rs.next()) {
+                    int id = rs.getInt("idmovie");
+                    String title = rs.getString("title");
+                    int py = rs.getInt("productionYear");
+                    String duration = rs.getString("duration");
+                    Genre g = new Genre(rs.getString("genre"));
+                    Actor a = new Actor(rs.getString("firstName"), rs.getString("lastName"));
+
+
+                    Movie movie = new Movie(id, title, py, duration, g, a);
+
+                    m.add(movie);
+                }
+                return m;
+            }
+        });
+
     }
     public Movie addActorToMovie(){
         return addActorToMovie();

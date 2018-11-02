@@ -13,6 +13,6 @@ public interface MovieService {
     Movie addMovie(Movie movie);
     void deleteMovie(int movieId);
     Movie updateMovie(int movieId, Movie movie);
-    boolean movieDetails(String title, String duration, String genre, int releaseYear);
+    List<Movie> search(String searching);
     Movie addActorToMovie();
 }
