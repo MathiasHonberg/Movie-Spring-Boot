@@ -52,7 +52,7 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Actor search(String s) {
-        return null;
+    public List<Actor> search(String searching) {
+      return actorRepo.search(searching);
     }
 }

@@ -55,6 +55,22 @@ public class ActorController {
         return "redirect:/actor_index";
     }
 
+    //SEARCH
+    @GetMapping("/search_actor")
+    public String search() {
+        log.info("Search action called...");
+        return "search_actor";
+    }
+
+    @PostMapping("/search_actor")
+    public String search(@RequestParam(defaultValue = "") String searching, Model model) {
+        log.info("Simon Smith is delicious");
+
+        List<Actor> a = actorService.search(searching);
+        model.addAttribute("sactor", a);
+
+        return "/search_actor";
+    }
 
 //Edit Methods
 

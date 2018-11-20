@@ -1,7 +1,6 @@
 package com.example.demo.Models.Repository;
 
 import com.example.demo.Models.Actor;
-import com.example.demo.Models.Genre;
 import com.example.demo.Models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -103,14 +102,35 @@ public class ActorRepoImpl implements ActorRepo {
     /*
 
      */
-    public boolean actorDetails(String firstName, int lastName, int dateofbirth) {
-        String sql = "SELECT count(*) FROM actor WHERE firstname=? and lastname=? and dateofbirth=? ";
-        int count = jdbc.queryForObject(sql, Integer.class, firstName, lastName, dateofbirth);
-        if (count == 0) {
-            return false;
-        } else {
-            return true;
-        }
+    public List<Actor> search(String searching) {
+        String t = "'%" + searching + "%'";
+
+        ArrayList<Actor> a = new ArrayList<>();
+        String sql = "SELECT idactor, firstName, lastName, dateOfBirth " +
+                "FROM actor " +
+                "WHERE firstName LIKE " + t + " ORDER BY firstName ";
+
+
+        return this.jdbc.query(sql, new ResultSetExtractor<List<Actor>>() {
+
+            @Override
+            public List<Actor> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+                while (rs.next()) {
+                    int id = rs.getInt("idactor");
+                    String firstName = rs.getString("firstName");
+                    String lastName = rs.getString("lastName");
+                    int dob = rs.getInt("dateOfBirth");
+
+
+                    Actor actor = new Actor(id, firstName, lastName, dob);
+
+                    a.add(actor);
+                }
+                return a;
+            }
+        });
+
     }
 }
 

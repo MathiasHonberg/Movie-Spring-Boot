@@ -17,6 +17,6 @@ public interface ActorService {
 
     Boolean deleteActor(int id);
 
-    Actor search(String s);
+    List<Actor> search(String searching);
 
 }

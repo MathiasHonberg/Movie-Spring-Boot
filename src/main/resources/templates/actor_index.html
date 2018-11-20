@@ -89,11 +89,7 @@
     <a th:href="@{/create_actor}" th:text="Create" class="nav-link; btn btn-success">Create</a>
     <br>
     <br>
-    <form action="@{/search}" th:object="${mov}" method="get">
-        <input id="filter" type="text" placeholder="Search.." name="search">
-        <button type="submit">Search</button>
-    </form>
-    <br>
+    <a th:href="@{/search_actor}" th:text="Search" class="nav-link; btn btn-primary">Search Actor</a>
     <br>
     <br>
     <table class="table table-striped table-bordered table-hover">

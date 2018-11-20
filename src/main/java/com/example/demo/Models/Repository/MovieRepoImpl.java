@@ -32,7 +32,7 @@ public class MovieRepoImpl implements MovieRepo {
         ArrayList<Movie> m = new ArrayList<>();
 
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
-                " actor.firstName, actor.lastName FROM movies " +
+                " actor.firstName, actor.lastName, trailer FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
                 "INNER JOIN actor ON movies.idactor = actor.idactor " +
                 "ORDER BY title";
@@ -51,9 +51,10 @@ public class MovieRepoImpl implements MovieRepo {
                     String duration = rs.getString("duration");
                     Genre g = new Genre(rs.getString("genre"));
                     Actor a = new Actor(rs.getString("firstName"), rs.getString("lastName"));
+                    String t = rs.getString("trailer");
 
 
-                    Movie movie = new Movie(id, title, py, duration, g, a);
+                    Movie movie = new Movie(id, title, py, duration, g, a, t);
 
                     m.add(movie);
                 }
@@ -69,7 +70,7 @@ public class MovieRepoImpl implements MovieRepo {
     public Movie findMovie(int id) {
         //this string is our message to our mysql database
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre," +
-                " actor.firstName, actor.lastName FROM movies " +
+                " actor.firstName, actor.lastName, trailer FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
                 "INNER JOIN actor ON movies.idactor = actor.idactor " +
                 "WHERE idmovie=? ";
@@ -86,7 +87,7 @@ public class MovieRepoImpl implements MovieRepo {
     public Movie addMovie(Movie movie) {
 
 
-        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO movies values (default, ?, ?, ?, ?, ?, null)";
         jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre().getIdgenre(), movie.getActor().getIdactor());
 
         return movie;
@@ -121,7 +122,7 @@ public class MovieRepoImpl implements MovieRepo {
 
         ArrayList<Movie> m = new ArrayList<>();
         String sql = "SELECT idmovie, title, productionYear, duration, genre.genre, " +
-                "actor.firstName, actor.lastName FROM movies " +
+                "actor.firstName, actor.lastName, trailer FROM movies " +
                 "INNER JOIN genre ON movies.idgenre = genre.idgenre " +
                 "INNER JOIN actor ON movies.idactor = actor.idactor " +
                 "WHERE title LIKE " + t + " ORDER BY title ";
@@ -138,9 +139,10 @@ public class MovieRepoImpl implements MovieRepo {
                     String duration = rs.getString("duration");
                     Genre g = new Genre(rs.getString("genre"));
                     Actor a = new Actor(rs.getString("firstName"), rs.getString("lastName"));
+                    String t = rs.getString("trailer");
 
 
-                    Movie movie = new Movie(id, title, py, duration, g, a);
+                    Movie movie = new Movie(id, title, py, duration, g, a, t);
 
                     m.add(movie);
                 }

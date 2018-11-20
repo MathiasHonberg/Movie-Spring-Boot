@@ -18,6 +18,6 @@ public interface ActorRepo {
 
     Boolean deleteActor(int id);
 
-    boolean actorDetails(String firstName, int lastName, int dateofbirth);
+    List<Actor> search (String searching);
 
 }

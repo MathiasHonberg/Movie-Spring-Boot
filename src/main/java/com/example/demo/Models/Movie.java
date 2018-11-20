@@ -8,14 +8,16 @@ public class Movie {
     private String duration;
     private Genre genre;
     private Actor actor;
+    private String trailer;
 
-    public Movie(int idmovie, String title, int productionYear, String duration, Genre genre, Actor actor) {
+    public Movie(int idmovie, String title, int productionYear, String duration, Genre genre, Actor actor, String trailer) {
         this.idmovie = idmovie;
         this.title = title;
         this.productionYear = productionYear;
         this.duration = duration;
         this.genre = genre;
         this.actor = actor;
+        this.trailer = trailer;
     }
 
     public Movie(int idmovie, String title, int productionYear, String duration) {
@@ -32,6 +34,14 @@ public class Movie {
     }
 
     public Movie() {
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public void addActor(Actor actor) {

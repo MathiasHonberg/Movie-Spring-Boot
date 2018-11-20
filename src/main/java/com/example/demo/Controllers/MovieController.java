@@ -27,7 +27,7 @@ public class MovieController {
         return "index";
     }
 
-    //CREATE
+//CREATE
     @GetMapping("/create")
     public String create(Model model) {
 
@@ -49,7 +49,7 @@ public class MovieController {
         return "redirect:/";
     }
 
-    //SEARCH
+//SEARCH
     @GetMapping("/search")
     public String search() {
         log.info("Search action called...");
@@ -65,7 +65,7 @@ public class MovieController {
         return "/search";
     }
 
-    //EDIT
+//EDIT
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         log.info("edit action called...");
@@ -84,7 +84,7 @@ public class MovieController {
         return "redirect:/";
     }
 
-    //DELETE
+//DELETE
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id, Model model) {
         log.info("delete  action called...");
@@ -105,7 +105,7 @@ public class MovieController {
         return "redirect:/";
     }
 
-    //DETAILS
+//DETAILS
     @GetMapping("/read/{id}")
     public String details(@PathVariable Integer id, Model model) {
         log.info("details action called...");
