@@ -68,6 +68,7 @@ public class ActorRepoImpl implements ActorRepo {
 
         return actor;
     }
+
     /*
 
 
@@ -89,6 +90,7 @@ public class ActorRepoImpl implements ActorRepo {
         return jdbc.update(sql, actorId) >= 0;
 
     }
+
     /*
 
      */
@@ -97,6 +99,7 @@ public class ActorRepoImpl implements ActorRepo {
         jdbc.update(sql, actor.getFirstName(), actor.getLastName(), actor.getDateOfBirth());
         return findActor(actorId);
     }
+
     /*
 
      */

@@ -34,7 +34,7 @@ public class Genre {
         this.genre = genre;
     }
 
-    public String displayGenre(){
+    public String displayGenre() {
 
         return "Genre: " +
                 "\nGenre ID: " + idgenre +

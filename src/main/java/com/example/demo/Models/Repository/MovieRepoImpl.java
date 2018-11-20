@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -19,7 +18,6 @@ import java.util.List;
 
 @Repository
 public class MovieRepoImpl implements MovieRepo {
-
 
 
     @Autowired
@@ -79,7 +77,9 @@ public class MovieRepoImpl implements MovieRepo {
         RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
         Movie movie = jdbc.queryForObject(sql, rowMapper, id);
         return movie;
+
     }
+
     /*
     this method contacts our database to add a new movie to the database
      */
@@ -91,6 +91,7 @@ public class MovieRepoImpl implements MovieRepo {
 
         return movie;
     }
+
     /*
     this method contacts our database to deletes a specific movie
      */
@@ -100,6 +101,7 @@ public class MovieRepoImpl implements MovieRepo {
         jdbc.update(sql);
 
     }
+
     /*
     this method contacts our database to update a specific movie
      */
@@ -107,8 +109,9 @@ public class MovieRepoImpl implements MovieRepo {
         //
         String sql = "UPDATE movies SET title=?, productionYear=?, duration=?, idgenre=?, idactor=? WHERE idmovie=?";
         jdbc.update(sql, movie.getTitle(), movie.getProductionYear(), movie.getDuration(), movie.getGenre().getIdgenre(), movie.getActor().getIdactor());
-        return findMovie(movieId);
+        return null;
     }
+
     /*
     this method contacts our database to showcase a specific movie
      */
@@ -146,7 +149,8 @@ public class MovieRepoImpl implements MovieRepo {
         });
 
     }
-    public Movie addActorToMovie(){
+
+    public Movie addActorToMovie() {
         return addActorToMovie();
     }
 }

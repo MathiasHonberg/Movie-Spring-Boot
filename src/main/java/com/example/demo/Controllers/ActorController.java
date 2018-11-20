@@ -39,8 +39,7 @@ public class ActorController {
 //CREATE METHODS
 
     @GetMapping("/create_actor")
-    public String createActor(Model model)
-    {
+    public String createActor(Model model) {
         log.info("create actor action called...");
 
         model.addAttribute("actor", new Actor());
@@ -48,20 +47,19 @@ public class ActorController {
     }
 
     @PostMapping("/create_actor")
-    public String createActor(@ModelAttribute Actor actor, Model model)
-    {
+    public String createActor(@ModelAttribute Actor actor, Model model) {
         actorService.addActor(actor);
 
-            model.addAttribute("actor", actorService.getActors());
+        model.addAttribute("actor", actorService.getActors());
 
-            return "redirect:/actor_index";
+        return "redirect:/actor_index";
     }
 
 
 //Edit Methods
 
     @GetMapping("/edit_actor/{id}")
-    public String editActor(@PathVariable Integer id, Model model){
+    public String editActor(@PathVariable Integer id, Model model) {
         log.info("edit actor action called");
 
         model.addAttribute("actor", actorService.findActor(id));
@@ -69,7 +67,7 @@ public class ActorController {
     }
 
     @PutMapping("/edit_actor")
-    public String editActor(@ModelAttribute Actor actor, Model model){
+    public String editActor(@ModelAttribute Actor actor, Model model) {
         log.info("edit actor Post action called");
 
         actorService.updateActor(actor.getIdactor(), actor);
@@ -82,14 +80,14 @@ public class ActorController {
 //Delete Methods
 
     @GetMapping("/delete_actor/{id}")
-    public String deleteActor(@PathVariable Integer id, Model model){
+    public String deleteActor(@PathVariable Integer id, Model model) {
 
         model.addAttribute("actor", actorService.findActor(id));
         return "delete_actor";
     }
 
     @PostMapping("/delete_actor")
-    public String deleteActor(@PathVariable Integer id){
+    public String deleteActor(@PathVariable Integer id) {
 
         actorService.deleteActor(id);
 

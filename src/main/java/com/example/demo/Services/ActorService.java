@@ -8,10 +8,15 @@ import java.util.List;
 @Service
 public interface ActorService {
     List<Actor> getActors();
+
     Actor addActor(Actor actor);
+
     Actor findActor(int id);
+
     Actor updateActor(int id, Actor actor);
+
     Boolean deleteActor(int id);
+
     Actor search(String s);
 
 }

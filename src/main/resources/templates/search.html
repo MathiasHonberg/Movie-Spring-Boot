@@ -13,13 +13,14 @@
 
         td, th {
             border: 1px solid #dddddd;
-            text-align:left;
+            text-align: left;
             padding: 8px;
         }
 
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+
         /* Black table */
         ul {
             list-style-type: none;
@@ -63,7 +64,7 @@
 
     <br>
     <form th:method="Post" th:action="@{/search}" th:object="${smovie}">
-         <input type="text" name="searching">
+        <input type="text" name="searching">
         <input type="submit" value="Search">
     </form>
     <br>

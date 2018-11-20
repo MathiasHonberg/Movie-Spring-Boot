@@ -94,7 +94,7 @@ public class Movie {
     public String toString() {
         return "Movies: " +
                 "\nMovie ID: " + this.idmovie +
-                "\nTitle: " + title  +
+                "\nTitle: " + title +
                 "\nProductionYear: " + productionYear +
                 "\nDuration: " + duration +
                 "\nGenre: " + genre.displayGenre() +

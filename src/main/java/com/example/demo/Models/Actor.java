@@ -74,7 +74,7 @@ public class Actor {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String displayActor(){
+    public String displayActor() {
 
         return "Actor: " +
                 "\nActor id: " + idactor +
@@ -83,6 +83,7 @@ public class Actor {
                 "\nDate of birth: " + dateOfBirth;
 
     }
+
     @Override
     public String toString() {
 
